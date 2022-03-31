@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" lang="pt-BR" />
+	    <title>.:: DIEX - Atualizar Curso ::.</title>
+	    <link rel="stylesheet" href="SemBorda.css" />
+	</h:head>
+	<h:body>
+		<h1>Atualizar Curso</h1>
+		<hr style="color:#33cc00" width="100%" align="left" noshade="noshade"></hr>
+    	<h:outputText value="Os campos com (*) são de preenchimento obrigatório"/>
+    	
+    	<h:form id="formularioEdicaoCurso">
+    	
+    	
+<!-- ...... Formulário para preenchimento com Dados do Curso ..................................... -->
+    		
+    		<p:panelGrid ><!-- styleClass="semBorda" -->
+    			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Identificação Ação de Extensão"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Título*: " /></p:column>
+       				<p:column colspan="3"><p:inputText id="titulo" value="#{controleCurso.curso.titulo}" size="60"
+       									   required="true" requiredMessage="*Insira o Título"/>
+       						  <p:message for="titulo"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Proponente*: " /></p:column>
+       				<p:column colspan="3">
+       					<p:selectOneMenu value="#{controleCurso.curso.proponente}" id="proponente"
+       									 converter="#{simpleEntityConverter}" style="width:505px"
+       									 required="true" requiredMessage="*Selecione um Proponente">
+       						<f:selectItem itemLabel="Selecione..." itemValue=""/>
+       						<f:selectItems value="#{controleServidor.listar()}"
+       									   var="servidores"
+       									   itemLabel="#{servidores.nome}"
+       									   itemValue="#{servidores}"/>
+       					</p:selectOneMenu>
+       				
+       						  <p:message for="proponente"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+	    			<p:column colspan="4">
+	    				<br/><hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+	    			</p:column>
+	       		</p:row>
+	       		<p:row>
+		       		<p:column colspan="4">
+		       			<p:panelGrid>
+			       			<p:row>
+			       				<p:column><h:outputText value="Área de Conhecimento*: "/></p:column>
+			       				<p:column><p:selectOneMenu id="areaConhecimento" value="#{controleCurso.curso.areaConhecimento}"
+			       										   required="true" requiredMessage="*Selecione a Área de Conhecimento"
+			       										   style="width:412px" converter="#{simpleEntityConverter}">
+			       						      <f:selectItem itemLabel="Selecione..." itemValue=""/>
+			       						      <f:selectItems value="#{controleAreaConhecimento.listar()}"
+			       						      				 var="areasConhecimentos"
+			       						      				 itemLabel="#{areasConhecimentos}"
+			       						      				 itemValue="#{areasConhecimentos}"/>
+			       						  </p:selectOneMenu>
+			       						  <p:message for="areaConhecimento" />
+			       				</p:column>
+			       			</p:row>
+			       			<p:row>
+			       				<p:column><h:outputText value="Área Temática*: "/></p:column>
+			       				<p:column><p:selectOneMenu id="areaTematica" value="#{controleCurso.curso.areaTematica}"
+			       										   required="true" requiredMessage="*Selecione a Área Temática"
+			       										   style="width:412px" converter="#{simpleEntityConverter}">
+			       						      <f:selectItem itemLabel="Selecione..." itemValue=""/>
+			       						      <f:selectItems value="#{controleAreaTematica.listar()}"
+			       						      				 var="areasTematicas"
+			       						      				 itemLabel="#{areasTematicas}"
+			       						      				 itemValue="#{areasTematicas}"/>
+			       						  </p:selectOneMenu>
+			       						  <p:message for="areaTematica" />
+			       				</p:column>
+			       			</p:row>
+			       			<p:row>
+			       				<p:column><h:outputText value="Linha de Extensão*: "/></p:column>
+			       				<p:column><p:selectOneMenu id="linhaExtensao" value="#{controleCurso.curso.linhaExtensao}"
+			       										   required="true" requiredMessage="*Selecione a Linha de Extensão"
+			       										   style="width:412px" converter="#{simpleEntityConverter}">
+			       							  <f:selectItem itemLabel="Selecione..." itemValue=""/>
+			       							  <f:selectItems value="#{controleLinhaExtensao.listar()}"
+			       						      				 var="linhasExtensoes"
+			       						      				 itemLabel="#{linhasExtensoes}"
+			       						      				 itemValue="#{linhasExtensoes}"/>
+			       						  </p:selectOneMenu>
+			       						  <p:message for="linhaExtensao" />
+			       				</p:column>
+			       			</p:row>
+		       			</p:panelGrid>
+	       			</p:column>
+       			</p:row>
+       			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Equipe"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Servidores: "/></p:column>
+       				<p:column colspan="3"><p:pickList id="servidores" converter="#{simpleEntityConverter}"
+       												  value="#{controleCurso.servidores}"
+       												  var="servidor" immediate="true"
+       												  itemLabel="#{servidor}"
+       												  itemValue="#{servidor}"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Discentes: "/></p:column>
+       				<p:column colspan="3"><p:pickList id="monitores" converter="#{simpleEntityConverter}"
+       												  value="#{controleCurso.monitores}"
+       												  var="monitor"
+       												  itemLabel="#{monitor}"
+       												  itemValue="#{monitor}"/></p:column>
+       			</p:row>
+       			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Caracterização da Proposta"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Público Alvo*: "/></p:column>
+       				<p:column colspan="3">
+       					<p:inputTextarea id="publicoAlvo" cols="60" rows="3" 
+       									 required="true" requiredMessage="*Insira o público alvo"
+       									 value="#{controleCurso.curso.publicoAlvo}"/>
+       					<p:message for="publicoAlvo" />
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Local Realização*: " /></p:column>
+       				<p:column colspan="3">
+       					<p:selectOneMenu id="localRealizacao" value="#{controleCurso.curso.localRealizacao}"
+			       						 required="true" requiredMessage="*Selecione o Local de Realização"
+			       						 style="width:505px" converter="#{simpleEntityConverter}">
+							<f:selectItem itemLabel="Selecione..." itemValue=""/>
+							<f:selectItems value="#{controleLocalRealizacao.listar()}"
+										   var="locais"
+										   itemLabel="#{locais}"
+										   itemValue="#{locais}"/>
+       					</p:selectOneMenu><br/>
+       					<p:message for="localRealizacao"/>
+       					<p:inputText id="localExterno" size="60" value="#{controleCurso.curso.localExterno}"/>
+       					
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4">
+       					<p:panelGrid>
+       						<p:row>
+       							<p:column><h:outputText value="Nº vagas*: "/></p:column>
+       							<p:column><p:inputText id="numeroVagas" value="#{controleCurso.curso.numVagas}"
+       												   required="true" requiredMessage="*Insira o número da vagas"
+       												   style="width:30px;" /></p:column>
+       							<p:column><h:outputText value="Carga horária total*: "/></p:column>
+       							<p:column><p:inputText id="cargaHorariaTotal" value="#{controleCurso.curso.cargaHorariaTotal}"
+       												   required="true" requiredMessage="*Insira a Carga Horária"
+       												   style="width:30px;" /></p:column>
+       							<p:column><h:outputText value="Carga horária semanal*: "/></p:column>
+       							<p:column><p:inputText id="cargaHorariaSemanal" value="#{controleCurso.curso.cargaHorariaSemanal}"
+       												   required="true" requiredMessage="*Insira a Carga Horária Semanal"
+       												   style="width:30px;" /></p:column>
+       						</p:row>
+       					</p:panelGrid>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Data Início*: "/></p:column>
+       				<p:column><p:inputMask id="dataInicio" mask="99/99/9999" value="#{controleCurso.curso.dataIni}"
+       									   required="true" requiredMessage="*Insira a data de início" size="17"/>
+       				
+       						<!--<p:calendar navigator="true" required="true" requiredMessage="*Insira a data de início"
+        							  pattern="dd/mm/yyyy" id="dataInicio" effect="slideDown" size="17"
+        							  value="#{controleCurso.curso.dataIni}" converter="#{simpleEntityConverter}"/>-->
+        							  <p:message for="dataInicio"/></p:column>
+        			
+        			<p:column><h:outputText value="Hora de início*: "/></p:column>
+       				<p:column>
+       					<p:inputMask id="horaInicio" value="#{controleCurso.curso.horaIni}" mask="99:99"
+       								 required="true" requiredMessage="*Insira a hora de início"
+       								 size="5"></p:inputMask><p:message for="horaInicio"/>
+       				</p:column>
+       				
+       			</p:row>
+       			<p:row>
+       								  
+       				<p:column><h:outputText value="Data Término*: "/></p:column>
+       				<p:column><p:inputMask id="dataTermino" mask="99/99/9999" value="#{controleCurso.curso.dataFim}"
+       									   required="true" requiredMessage="*Insira a data de termino" size="17"/>
+       				
+       				<!-- <p:calendar navigator="true" required="true" requiredMessage="*Insira a data de término"
+        							  pattern="dd/mm/yyyy" id="dataTermino" effect="slideDown" size="17"
+        							  value="#{controleCurso.curso.dataFim}" converter="#{simpleEntityConverter}"/>-->
+        							  <p:message for="dataTermino"/></p:column>
+        							  
+       				<p:column><h:outputText value="Hora de término*: "/></p:column>
+       				<p:column>
+       					<p:inputMask id="horaFim" value="#{controleCurso.curso.horaFim}" mask="99:99"
+       								 required="true" requiredMessage="*Insira a hora de término"
+       								 size="5"></p:inputMask><p:message for="horaFim"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Dias*: "/></p:column>
+       				<p:column colspan="3"><p:inputText id="dias" value="#{controleCurso.curso.dias}" size="35"
+       									   required="true" requiredMessage="*Insira os dias de aula"/>
+       					<p:message for="dias"/>					   
+       				</p:column>
+       			</p:row>
+       			<p:row>
+    				<p:column colspan="4">
+    					<br/><hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Requisitos de Acesso*: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="requisitosAcesso" cols="82" rows="3"
+       										   value="#{controleCurso.curso.requisitosAcesso}"
+       										   required="true" requiredMessage="*Insira os Pré-requisitos"/>
+       									 <p:message for="requisitosAcesso"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Justificativa*: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="justificativa" cols="82" rows="3"
+       										   value="#{controleCurso.curso.justificativa}"
+       										   required="true" requiredMessage="*Insira a Justificativa"/>
+       									 <p:message for="justificativa"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Objetivos Gerais*: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="objetivosGerais" cols="82" rows="3"
+       										   value="#{controleCurso.curso.objetivosGerais}"
+       										   required="true" requiredMessage="*Insira os Objetivos Gerais"/>
+       									 <p:message for="objetivosGerais"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Objetivos Específicos*: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="objetivosEspecificos" cols="82" rows="3"
+       										   value="#{controleCurso.curso.objetivosEspecificos}"
+       										   required="true" requiredMessage="*Insira os Objetivos Específicos"/>
+       									 <p:message for="objetivosEspecificos"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Metodologia*: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="metodologia" cols="82" rows="3"
+       										   value="#{controleCurso.curso.metodologia}"
+       										   required="true" requiredMessage="*Insira a Metodologia"/>
+       									 <p:message for="metodologia"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Metas*: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="metas" cols="82" rows="3"
+       										   value="#{controleCurso.curso.metas}"
+       										   required="true" requiredMessage="*Insira as Metas"/>
+       									 <p:message for="metas"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Referências*: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="referencias" cols="82" rows="3"
+       										   value="#{controleCurso.curso.referencias}"
+       										   required="true" requiredMessage="*Insira a Referências"/>
+       									 <p:message for="referencias"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4">
+       					<br/><h:outputText value="Conteúdo Programático: "/>
+       					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4">
+						<p:dataTable id="conteudoProgramatico" value="#{controleCurso.conteudoProgramatico}"
+									 var="conteudoProgramatico" rowKey="conteudoProgramatico.dataProgramada"
+									 emptyMessage="Não foram cadastrados Conteúdos">
+							
+				        	<p:column>  
+				            	<f:facet name="header" id="dataHeader">  
+				                	<h:outputText value="Data" id="data"/>  
+				            	</f:facet>  
+				            	<h:outputText id="dataProgramada" value="#{conteudoProgramatico.dataProgramada}" />  
+				        	</p:column>  
+				
+				        	<p:column>  
+				            	<f:facet name="header">  
+				                	<h:outputText value="Conteúdo" />  
+				            	</f:facet>  
+				            	<h:outputText value="#{conteudoProgramatico.conteudo}" />  
+				        	</p:column>  
+		    			</p:dataTable>
+       				</p:column>
+       			</p:row> <!-- -->
+       			<p:row><p:column colspan="3"/>
+       				<p:column><p:commandButton value="Editar Conteúdo" action="#{controleCurso.preparaEdicaoConteudo()}" ajax="false"/></p:column>
+       			</p:row> 
+       			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Avaliação de Resultados"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="avaliacaoResultados" cols="82" rows="3"
+       										   value="#{controleCurso.curso.avaliacaoResultados}"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="3"/>
+        			<p:column><br/>
+        				<p:commandButton id="continuar" value="Atualizar" ajax="false"
+        								 action="#{controleCurso.alterar()}" />
+       					
+       					<p:commandButton id="cancelar" value="Cancelar" ajax="false"
+       									 action="/index.xhtml?faces-redirect=true" immediate="true" />
+       				</p:column>
+        		</p:row>
+    		</p:panelGrid>
+    	</h:form>
+	</h:body>
+</html>

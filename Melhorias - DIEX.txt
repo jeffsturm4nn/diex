@@ -1,0 +1,38 @@
+Sistema DIEX - Melhorias
+
+- Colocar aba no cadastro de curso para cancelar ou enviar
+- Validação de data e hora inicio e término
+- Algoritmo para verificação de hora total através da data
+- Antes do conteúdo programatico, colocar o nome do curso 
+- Adicionar os nomes dos campos (nome e data) em conteudo programatico
+- Validar se a data do conteúdo programatico está dentro das datas pré-estabelecidas de inicio e termino
+- Após salvar conteúdo redirecionar à página inicial
+- Validação de conteúdo programatico - não é possível cadastrar um curso sem conteudo
+- Não pode data ou nome do conteúdo programático vazio
+- Filtragem de localização de curso sem funcionamento (PRIORIDADE) //
+- Botão exibir (localizar curso) - curso não selecionado = alerta//
+- Adicionar botão exibir no cadastro de curso
+- Confirmação de edição de curso - retirar
+- Ao atualizar, voltar à tela de listagem (Curso)
+- PROBLEMA - Editar Conteúdo Programatico redireciona para a mesma tela - (PRIORIDADE)
+- Exibir mensagem na tela de matrícula de curso após o aluno ser matriculado (PRIORIDADE)
+
+
+
+
+
+- Colocar label na parte de solicitaçao de curso
+- Incluir pesquisa de aluno por nome
+- Alterar status do curso após solicitação de correção
+- Fechar conexões no banco de dados no relatório
+
+
+
+
+- Local Realização - LOCAL EXTERNO - campo abaixo: especificar (bloquear campo para professores)
+- Protocolo apenas com o administrador, professores: bloqueado
+- Objetivo Geral (apenas um) - modificar nome
+- Relatório (PDF para curso - exibição)
+- 3 administradores
+- FUTURO - Administrador dá serviços aos servidores
+- 

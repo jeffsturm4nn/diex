@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <title>.:: DIEX - Lista de Servidores Cadastrados ::.</title>
+        <link rel="stylesheet" href="CSS/diex.css" type="text/css"></link>
+    </h:head>
+    
+    <h:body>
+        <p:messages autoUpdate="true" closable="true" rendered="true" />
+
+        <h2>Lista de Servidores Cadastrados</h2>
+        <hr style="color: #33CC00;" size="5" width="100%" align="left"
+            noshade="true"></hr>
+        <br />
+
+        <p:panelGrid styleClass="semBorda" columns="1">
+            <h:form id="listaForm" prependId="false">
+
+                <p:growl id="mensagem" />
+
+                <p:dataTable id="lista" var="servidor" scrollable="true"
+                             rendered="true" scrollHeight="420" sortBy="#{servidor.nome}"
+                             value="#{controleServidor.listar()}" rowKey="#{servidor.codigo}"
+                             selection="#{controleServidor.selecionado}"
+                             selectionMode="single" emptyMessage="Nenhum servidor encontrado."
+                             filteredValue="#{controleServidor.listaFiltrados}">
+
+                    <f:facet name="header">
+                        Lista de Servidores
+                    </f:facet>
+
+                    <p:column headerText="Nome" resizable="true" width="620" sortBy="#{servidor.nome}"
+                              filterBy="#{servidor.nome}" filterMatchMode="contains">
+                        <h:outputText value="#{servidor.nome}" ></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="SIAPE" resizable="true" sortBy="#{servidor.usuario.siape}"
+                              filterBy="#{servidor.usuario.siape}" filterMatchMode="contains">
+                        <h:outputText value="#{servidor.usuario.siape}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="CPF" resizable="true" sortBy="#{servidor.cpf}"
+                              filterBy="#{servidor.cpf}" filterMatchMode="contains">
+                        <h:outputText value="#{servidor.cpf}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="RG" resizable="true" sortBy="#{servidor.rg}"
+                              filterBy="#{servidor.rg}" filterMatchMode="contains">
+                        <h:outputText value="#{servidor.rg}"></h:outputText>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <h:outputText value=" "></h:outputText>
+                    </f:facet>
+                </p:dataTable>
+
+                <p:confirmDialog id="confirmarExclusao" rendered="true"
+                                 closable="false" message="Deseja realmente excluir este servidor"
+                                 header="Confirmação de Exclusão" severity="alert"
+                                 widgetVar="confirmDialog"  showEffect="explode" hideEffect="explode">
+
+                    <p:commandButton id="confirmar" value="Excluir"
+                                     update="lista" oncomplete="confirmDialog.hide()"
+                                     action="#{controleServidor.remover()}" />
+                    <p:commandButton id="cancelar" value="Cancelar"
+                                     onclick="confirmDialog.hide()" type="button" />
+                </p:confirmDialog>
+
+                <h:panelGroup>
+
+                    <p:commandButton value="Exibir" global="true"
+                                     action="#{controleServidor.exibir()}" update="lista"
+                                     icon="ui-icon-search" ></p:commandButton>
+                    <p:commandButton value="Editar" icon="ui-icon-pencil"
+                                     action="#{controleServidor.alterar()}" update="lista"></p:commandButton>
+                    <p:commandButton value="Excluir" icon="ui-icon-trash"
+                                     onclick="confirmDialog.show()" type="button"></p:commandButton>
+                </h:panelGroup>
+            </h:form>
+        </p:panelGrid>
+
+    </h:body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

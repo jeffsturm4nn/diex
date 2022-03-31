@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" lang="pt-BR" />
+	    <title>.:: DIEX - Matrícula ::.</title>
+	</h:head>
+	<h:body>
+		<h1>Matrícula</h1>
+    	<hr style="color:#33cc00" width="100%" align="left" noshade="noshade"/>
+    	<h:form>
+    		<p:panelGrid>
+    			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Selecionar Aluno"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4">
+       				<p:panelGrid>
+       					<p:row>
+		       				<p:column><h:outputText value="CPF do Aluno: "/></p:column>
+		       				<p:column><p:inputMask id="cpf_busca" value="#{controleMatricula.cpf}" mask="999.999.999-99"/></p:column>
+		       				<p:column>
+		       					<p:commandButton id="buscar" value="Buscar" 
+		       									 action="#{controleMatricula.buscarAluno}"
+		       									 update="alunoBuscado @parent">
+		       						<p:ajax listener="#{controleMatricula.buscarAluno}" update="alunoBuscado"/>
+		       					</p:commandButton>
+		       				</p:column>
+		       			</p:row>
+       				</p:panelGrid>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="3">
+       					<p:outputPanel id="alunoBuscado">
+       						<b><h:outputLabel value="Aluno encontrado: "/></b><br/>
+       						<h:outputLabel id="nome" value="Nome: #{controleMatricula.aluno.nome}"/><br/>
+       						<h:outputLabel id="cpf"  value="CPF:  #{controleMatricula.aluno.numCpf}"/>
+       					</p:outputPanel>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+    			<p:column colspan="4">
+    				<br/><h:outputText value="Selecionar Curso"/>
+    				<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    			</p:column>
+       		</p:row>
+			<p:row>
+				<p:column colspan="4">
+					<p:selectManyMenu id="cursosMatriculados"
+									  value="#{controleMatricula.cursos}"
+									  style="width:735px" 
+									  converter="#{simpleEntityConverter}"
+									  showCheckbox="true">
+									  
+						<f:selectItems value="#{controleCurso.listarMatriculaveis()}"
+									   var="cursos"
+									   itemValue="#{cursos}"
+									   itemLabel=" #{cursos.titulo} - #{cursos.proponente}"/>
+						<!-- 			   
+						<p:column>
+							#{curso.titulo} - #{curso.proponente}
+						</p:column>
+						 -->			   
+					</p:selectManyMenu>
+				</p:column>
+			</p:row><!-- 
+			<p:row>
+       			<p:column colspan="3">
+       				<p:outputPanel id="cursoSelecionado">
+       					<h:outputLabel id="titulo"     value="Título:      #{controleMatricula.curso.titulo}"/><br/>
+       					<h:outputLabel id="proponente" value="Proponente:  #{controleMatricula.curso.proponente}"/>
+       				</p:outputPanel>
+       			</p:column>
+       		</p:row> -->
+			<p:row>
+				<p:column colspan="4">
+					<b>Ao efetuar a matrícula, o candidato:</b><br/>
+					1. Assume o compromisso de cumprir a programação do curso;<br/>
+					2. Acata as normas estabelecidas no Regimento do IFPE e demais legislações de ensino;<br/>
+					3. Aceita as normas de frequência e avaliação do curso bem como as orientações dadas;<br/>
+					4. Responsabiliza-se por todo e qualquer dano patrimonial que vier a causar ao IFPE, inclusive<br/>
+					   financeiro;<br/>
+					5. Reconhece que a segunda via do certificado será emitida com custos relativos à impressão;<br/>
+					6. Tem ciência de que a entrega do certificado está condicionada à entrega da documentação<br/>
+					   e/ou material necessário à matrícula no curso ou ação de extensão.<br/>
+				</p:column>
+			</p:row>
+			<p:row>
+        		<p:column><br/>
+        			<center>
+        			<p:commandButton id="finalizar" value="Finalizar" ajax="false"
+        							 action="#{controleMatricula.adicionar()}"/>
+       				
+       				<p:commandButton id="cancelar" value="Cancelar" ajax="false"
+       								 action="/index.xhtml?faces-redirect=true" immediate="true" />
+       				</center>
+       			</p:column>
+        	</p:row>
+    		</p:panelGrid>
+    	</h:form>
+	</h:body>
+
+</html>

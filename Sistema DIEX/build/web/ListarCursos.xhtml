@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html" />
+        <title>.:: DIEX - Listagem de Cursos</title>
+        <link rel="stylesheet" href="mainStyle.css" ></link>
+    </h:head>
+
+    <h:body>
+        
+        <h:link outcome="index" value="Pagina Inicial"/><br/><br/>
+        <h1>DIEX - Listagem de Cursos</h1>
+        <hr style="color:#33cc00" width="100%" align="left" noshade="noshade"></hr>
+
+        <p:growl id="growl" life="3200" autoUpdate="true" />
+        
+        <p:panelGrid id="grid" columns="1">
+
+            <h:form id="listaForm"> 
+
+                <p:dataTable id="tabelaCursos" emptyMessage="Nenhum curso encontrado." filteredValue="#{controleCurso.listaFiltrados}"
+                             var="curso" paginator="true" rows="14" rowKey="#{curso.codigo}" value="#{controleCurso.listar()}"
+                             selectionMode="single" sortBy="#{curso.titulo}" rendered="true" widgetVar="tabelaCursos"
+                             selection="#{controleCurso.selecionado}">
+
+                    <p:column id="Titulo" headerText="Titulo" resizable="true" 
+                              sortBy="#{curso.titulo}" filterBy="#{curso.titulo}"
+                              filterMatchMode="contains">
+                        <h:outputText value="#{curso.titulo}"></h:outputText>                
+                    </p:column>         
+
+                    <p:column id="Docente" headerText="Docente" resizable="true" sortBy="#{curso.proponente}"
+                              filterBy="#{curso.proponente}" filterMatchMode="contains">
+                        <h:outputText value="#{curso.proponente}"></h:outputText>
+                    </p:column>
+
+                    <p:column id="Dias" headerText="Dias" resizable="true" sortBy="#{curso.dias}"
+                              filterBy="#{curso.dias}" filterMatchMode="contains">
+                        <h:outputText value="#{curso.dias}"></h:outputText>
+                    </p:column>
+
+                    <p:column id="HoraInicio" headerText="Hora Inicio" resizable="true" sortBy="#{curso.horaIni}"
+                              filterBy="#{curso.horaIni}" filterMatchMode="contains">
+                        <h:outputText value="#{curso.horaIni}"></h:outputText>
+                    </p:column>
+
+                    <p:column id="HoraFim" headerText="Hora Fim" resizable="true" sortBy="#{curso.horaFim}"
+                              filterBy="#{curso.horaFim}" filterMatchMode="contains">
+                        <h:outputText value="#{curso.horaFim}" styleClass=".ui-outputtext"></h:outputText>
+                    </p:column>
+
+                    <p:column id="CargaHorariaTotal" headerText="Carga Horaria Total" resizable="true" sortBy="#{curso.cargaHorariaTotal}"
+                              filterBy="#{curso.cargaHorariaTotal}" filterMatchMode="contains">
+                        <h:outputText value="#{curso.cargaHorariaTotal}"></h:outputText>
+                    </p:column>
+
+                    <p:column id="Situacao" headerText="Situação" width="190" resizable="true" 
+                              sortBy="#{controleCurso.situacaoString(curso.situacao)}" filterOptions='#{controleCurso.situacoes}' 
+                              filterBy="#{controleCurso.situacaoString(curso.situacao)}" filterMatchMode="contains" filterMaxLength="20"> 
+                        <h:outputText value="#{controleCurso.situacaoString(curso.situacao)}" />
+                    </p:column>
+
+                    <f:facet id="bottomFacet" name="bottomFacet">
+                        <h:outputText value=""/>
+                    </f:facet>
+
+                </p:dataTable>
+
+                <p:confirmDialog id="dialog" appendToBody="true" closable="false" visible="false"
+                                 widgetVar="confirmDialog" message="Deseja realmente excluir o curso?"
+                                 severity="alert" header="Confirmacao de Exclusao">
+                    <p:commandButton id="excluirCB" value="Excluir" action="#{controleCurso.remover()}" update="tabelaCursos" oncomplete="confirmDialog.hide()"></p:commandButton>
+                    <p:commandButton id="cancelarCB" value="Cancelar" onclick="confirmDialog.hide();" type="button"></p:commandButton>
+                </p:confirmDialog>
+
+                <p:commandButton id="exibirBT" value="Exibir" icon="ui-icon-search" action="#{controleCurso.preparaVisualizacao()}" />   
+                <p:commandButton id="editarBT" value="Editar" action="#{controleCurso.preparaEdicao()}" rendered="#{controleCurso.permicaoEditar()}" 
+                                 icon="ui-icon-pencil"/>
+                <p:commandButton id="excluirBT" value="Excluir" rendered="#{controleCurso.permicaoExcluir()}" 
+                                 onclick="confirmDialog.show();" type="button" icon="ui-icon-trash"/>
+
+            </h:form>
+
+        </p:panelGrid>
+
+    </h:body>
+</html>
+

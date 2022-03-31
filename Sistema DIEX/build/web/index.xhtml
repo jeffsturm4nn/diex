@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+  	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+        <title>Sistema DIEX</title>
+    </h:head>
+
+    <h:body>
+    	<p:layout fullPage="true" >
+    		<p:layoutUnit position="north" size="20%" style="color:#33cc00" >
+
+    		</p:layoutUnit>
+    		<p:layoutUnit position="west" size="15%">
+    		<h:form>
+    			<h:link outcome="#{controleServidor.preparaCadastro()}" value="Cadastrar Servidor"/><br/>
+    			<h:link outcome="ListarServidores" value="Listar Servidores" /><br/>
+    			<h:outputText value=".........................."/><br/>
+    			<h:link outcome="#{controleAluno.preparaCadastro()}" value="Cadastrar Aluno"/><br/>
+    			<h:link outcome="ListarAlunos"  value="Listar Alunos"  /><br/>
+    			<h:outputText value=".........................."/><br/>
+    			<h:link outcome="#{controleCurso.preparaCadastro()}" value="Cadastrar Curso"/><br/>
+    			<h:link outcome="ListarCursos"  value="Listar Cursos"  /><br/>
+    			<h:outputText value=" "/><br/>
+    			<h:link outcome="Matricula" value="Realizar Matricula" />
+    		</h:form>
+    		</p:layoutUnit>
+    		<p:layoutUnit id="centro" position="center">
+
+    		</p:layoutUnit>
+    	</p:layout>
+    </h:body>
+
+</html>

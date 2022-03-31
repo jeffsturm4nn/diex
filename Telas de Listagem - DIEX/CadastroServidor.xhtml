@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>.:: DIEX - Cadastro de Servidor ::.</title>
+		<link rel="stylesheet" href="SemBorda.css" />
+    </h:head>
+    
+    <h:body>
+    <h1>Cadastro de Servidor</h1>
+    <hr style="color:#33cc00" width="100%" align="left" noshade="noshade"/>
+    	<h:outputLabel value="Os campos com (*) são de preenchimento obrigatório"/>
+    	
+    	<h:form id="formularioCadastroServidor" method="post">
+    	
+<!-- ...... Dados de usuário, para o servidor logar no site ........................................................ -->
+    	
+    		<p:panelGrid styleClass="semBorda"> <!-- CSS para esconder bordas do PanelGrid-->
+    			<p:row>
+    				<p:column colspan="4"><br/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+    			</p:row>
+    			<p:row>
+    				<p:column><h:outputText value="Tipo Servidor*: "/></p:column>
+    				<p:column>
+    					<p:selectOneMenu id="tipoServidor" value="#{controleServidor.selecionado.tipoServidor}"
+    									 required="true" requiredMessage="*Selecione um Tipo de Servidor">
+    						<f:selectItem itemLabel="Selecione..."  itemValue=""/>
+    						<f:selectItem itemLabel="Professor"     itemValue="professor"/>
+    						<f:selectItem itemLabel="Administrativo" itemValue="administrativo"/>
+    					</p:selectOneMenu>
+    					<p:message display="*Selecione um Tipo de Servidor" id="tipoVazio" for="tipoServidor"/>
+    				</p:column>
+    			</p:row>
+    			<p:row>
+    				<p:column><h:outputText value="SIAPE*: "/></p:column>
+    				<p:column><p:inputText  id="siape" label="Siape" size="22"
+    										value="#{controleUsuario.usuario.siape}"
+    										required="true" requiredMessage="*Insira o SIAPE"/>
+    						  <p:message id="siapeVazio" for="siape"/></p:column>
+    			</p:row>
+    			<p:row>
+    				<p:column><h:outputLabel value="Senha*: " /></p:column>
+					<p:column><p:password id="senha1" value="" match="senha" size="22"
+										  label="Senha" required="true" feedback="true" promptLabel="Insira sua senha"
+										  weakLabel="Fraca" goodLabel="Regular" strongLabel="Forte"
+										  requiredMessage="*Insira uma senha"/></p:column>
+				</p:row>
+				<p:row>
+					<p:column><h:outputLabel value="Senha Novamente*: " /></p:column>
+					<p:column><p:password id="senha" value="#{controleUsuario.usuario.senha}"
+										  label="Senha" required="true" size="22"
+										  requiredMessage="*Insira a senha novamente"/></p:column>
+				</p:row>
+    		
+    		
+<!-- .......... Formulário para preenchimento com Dados Pessoais do Servidor .............................. -->
+
+	    		<p:row>
+	    			<p:column colspan="4">
+	       				<br/><h:outputText value="Dados Pessoais" />
+	       				<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+	       			</p:column>
+	       		</p:row>
+	       		<p:row>
+	            	<p:column><h:outputLabel for="nome" value="Nome*: " /></p:column>
+	            	<p:column colspan="3"><p:inputText  id="nome" label="Nome" size="62"
+	            										value="#{controleServidor.selecionado.nome}"
+	            										required="true" requiredMessage="*Insira um Nome"/></p:column>
+	            </p:row>
+	            <p:row>
+	            	<p:column><h:outputLabel value="RG*: "/></p:column>
+	            	<p:column><p:inputMask id="rg" value="#{controleServidor.selecionado.rg}"
+	            						   required="true" requiredMessage="*Insira o seu RG"
+	            						   mask="9.999.999" label="RG" size="22"/></p:column>
+	            	<p:column><h:outputLabel value="CPF*: "/></p:column>
+	            	<p:column><p:inputMask id="cpf" value="#{controleServidor.selecionado.cpf}"
+	            						   required="true" requiredMessage="*Insira o seu CPF"
+	            						   mask="999.999.999-99" label="CPF" size="22"/></p:column>
+				</p:row>
+				<p:row>
+	            	<p:column><h:outputLabel value="Email: " /></p:column>
+	            	<p:column colspan="3"><p:inputText  id="email" value="#{controleServidor.selecionado.email}"
+	            										size="62" label="Email" /></p:column>
+	            </p:row>
+				<p:row>
+					<p:column><h:outputLabel value="Fone: "/></p:column>
+					<p:column colspan="3">
+						  <p:inputMask id="fone" value="#{controleServidor.selecionado.telefone}"
+						  			   mask="(99)9999-9999" size="22"/></p:column>
+				</p:row>
+	       		<p:row>
+	       			<p:column colspan="4">
+	       			
+	       			
+<!-- .............. Informações de Trabalho .................................................................. -->
+       				
+       				<br/><hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Coordenação*: "/> </p:column>
+       				<p:column>
+       					<p:selectOneMenu id="coordenacao" required="true" requiredMessage="Selecione a Coordenação">
+       						<f:selectItem itemLabel="Selecione..." itemValue=""/>
+            				<f:selectItems value="#{controleServidor.selecionado.coordenacao.coordenacao}"
+            							   var="coordenacao"
+            							   itemLabel="#{controleServidor.selecionado.coordenacao.coordenacao}"
+            							   itemValue="#{controleServidor.selecionado.coordenacao.coordenacao}"/>
+       					</p:selectOneMenu>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Unidade de Ensino*: "/></p:column>
+    				<p:column><p:inputText  id="unidadeDeEnsino" value="#{controleServidor.selecionado.unidadeEnsino}"
+    										required="true" label="UnidadeDeEnsino" size="22"
+    										requiredMessage="*Insira a unidade de ensino"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="3"/>
+       				<p:column><br/>
+       					<p:commandButton id="finalizar" value="Finalizar" actionListener="#{controleServidor.adicionar}"/>
+       					<p:commandButton type="reset" id="cancelar" value="Cancelar" action="index.xhtml" />
+       				</p:column>
+       			</p:row>
+			</p:panelGrid>
+		</h:form>
+    </h:body>
+</html>

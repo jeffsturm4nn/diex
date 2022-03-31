@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" lang="pt-BR" />
+	<title>.:: DIEX - Cadastro de Curso ::.</title>
+	<link rel="stylesheet" href="SemBorda.css" />
+</h:head>
+<h:body>
+	<h1>Cadastro de Curso</h1>
+	<hr style="color:#33cc00" width="100%" align="left" noshade="noshade"></hr>
+	
+	<h:form id="form">
+		<p:panelGrid >
+		<p:row>
+    		<p:column colspan="4">
+    			<br/><h:outputText value="Conteúdo Programático*"/>
+    			<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    		</p:column>
+       	</p:row>
+		<p:row>
+			<p:column><p:inputMask value="#{controleCurso.conteudo.dataProgramada}"
+								   mask="99/99/9999" id="dataProgramada" size="11"/></p:column>
+			<p:column colspan="2"><p:inputText value="#{controleCurso.conteudo.conteudo}"
+								   id="conteudoDescricao" size="70"/></p:column>
+		</p:row>
+		<p:row>
+			<p:column colspan="4">					              
+       			<p:commandButton value="Limpar" type="reset" id="limpar"/>  
+       			
+       			
+       			<p:commandButton id="btn_add" value="Adicionar na Lista" update="conteudos @parent dataProgramada conteudoDescricao"  
+                       			 action="#{controleCurso.reinit()}">  
+          			<p:collector value="#{controleCurso.conteudo}"
+                    	   		 addTo="#{controleCurso.conteudoProgramatico}" />
+       			</p:commandButton> 
+       			
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column colspan="4">
+			<p:outputPanel id="conteudos">
+				<p:dataTable id="conteudoProgramatico" value="#{controleCurso.conteudoProgramatico}"
+							 var="conteudoProgramatico" rowKey="conteudoProgramatico.dataProgramada">
+					
+		        	<p:column>  
+		            	<f:facet name="header" id="dataHeader">  
+		                	<h:outputText value="Data" id="data"/>  
+		            	</f:facet>  
+		            	<h:outputText id="dataProgramada" value="#{conteudoProgramatico.dataProgramada}" />  
+		        	</p:column>  
+		
+		        	<p:column>  
+		            	<f:facet name="header">  
+		                	<h:outputText value="Conteúdo" />  
+		            	</f:facet>  
+		            	<h:outputText value="#{conteudoProgramatico.conteudo}" />  
+		        	</p:column>  
+		
+		        	<p:column>  
+		            	<f:facet name="header">  
+		                	<h:outputText value="Operação" />  
+		            	</f:facet>  
+		            	<p:commandLink id="remover" value="Remover" update=":form:conteudos" process=":form:conteudos">  
+		            	    <p:collector value="#{conteudoProgramatico}"  
+		                	             removeFrom="#{controleCurso.conteudoProgramatico}" />  
+		            	</p:commandLink>  
+		        	</p:column>
+    			</p:dataTable>
+			</p:outputPanel>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column colspan="3"/>
+        		<p:column><br/>
+        			<p:commandButton id="cadastrar" value="Cadastrar" ajax="false"
+        							 action="#{controleCurso.adicionarConteudoProgramatico()}"/>
+       				<p:commandButton id="cancelar" value="Cancelar" ajax="false"
+       								 action="/ListarCursos.xhtml?faces-redirect=true" immediate="true" />
+       		</p:column>
+        </p:row>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

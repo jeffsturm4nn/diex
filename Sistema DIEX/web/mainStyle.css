@@ -1,0 +1,15 @@
+/* 
+    Document   : FiltroSituacao
+    Created on : 19/06/2013, 19:01:06
+    Author     : Jeff Sturmann
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+select#listaForm\:tabelaCursos\:Situacao\:filter 
+{
+    width: 180px;
+}
+
+
+

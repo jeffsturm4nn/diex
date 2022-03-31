@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <title>.:: DIEX - Lista de Alunos Cadastrados ::.</title>
+        <link rel="stylesheet" href="../CSS/diex.css" type="text/css"></link>
+    </h:head>
+    <h:body>
+        <p:messages autoUpdate="true" closable="true" rendered="true" />
+
+        <h3>Lista de Alunos Cadastros</h3>
+        <hr style="color: #33CC00;" size="5" width="100%" align="left"
+            noshade="true"></hr>
+        <br />
+        <p:panelGrid styleClass="semBorda" columns="1">
+            <h:form>
+                <p:dataTable id="lista" emptyMessage="Nenhum aluno encontrado."
+                             rowKey="#{aluno.codigo}" var="aluno"
+                             scrollable="true" scrollHeight="420" value="#{controleAlunoMock.listaAlunos}"
+                             selection="#{controleAlunoMock.selecionado}" selectionMode="single"
+                             filteredValue="#{controleAlunoMock.listaFiltrados}" sortBy="#{aluno.nome}">
+
+                    <f:facet name="header">
+                        Lista de Alunos
+                    </f:facet>
+
+                    <p:column id="Nome" headerText="Nome" resizable="true" sortBy="#{aluno.nome}"
+                              filterBy="#{aluno.nome}" filterMatchMode="contains" width="600">
+                        <h:outputText value="#{aluno.nome}" dir="LTR"></h:outputText>
+                    </p:column>
+
+                    <p:column id="CPF" headerText="CPF" resizable="true" sortBy="#{aluno.numCpf}"
+                              filterBy="#{aluno.numCpf}" filterMatchMode="contains">
+                        <h:outputText value="#{aluno.numCpf}" dir="LTR"></h:outputText>
+                    </p:column>
+
+                    <p:column id="Telefones" headerText="Tel. Celular" sortBy="#{aluno.telefoneCelular}"
+                              filterBy="#{aluno.telefoneFixo + aluno.telefoneCelular}">
+                        <h:outputText value="#{aluno.telefoneCelular}"></h:outputText>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <h:outputText value=""></h:outputText>
+                    </f:facet>
+                </p:dataTable>
+
+                <p:confirmDialog id="confirmarExclusao" rendered="true"
+                                 closable="false" message="Deseja realmente excluir este aluno?"
+                                 header="Confirmação de Exclusão" severity="alert"
+                                 widgetVar="confirmDialog"  showEffect="explode" hideEffect="explode">
+
+                    <p:commandButton id="confirmar" value="Excluir"
+                                     update="lista" oncomplete="confirmDialog.hide()"
+                                     action="#{controleAlunoMock.remover()}" />
+                    <p:commandButton id="cancelar" value="Cancelar"
+                                     onclick="confirmDialog.hide()" type="button" />
+                </p:confirmDialog>       
+
+                <h:panelGroup>
+                    <p:commandButton value="Exibir" global="true"
+                                     action="#{controleAlunoMock.exibir()}" update="lista"
+                                     icon="ui-icon-search"></p:commandButton>
+                    <p:commandButton value="Editar" icon="ui-icon-pencil"
+                                     action="#{controleAlunoMock.alterar()}" update="lista"></p:commandButton>
+                    <p:commandButton value="Excluir" icon="ui-icon-trash"
+                                     onclick="confirmDialog.show()" type="button"></p:commandButton>
+                </h:panelGroup>
+
+            </h:form>
+        </p:panelGrid>
+    </h:body>
+</html>

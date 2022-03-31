@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+        <title>.:: DIEX - Dados de Aluno ::.</title>
+        <link rel="stylesheet" href="SemBorda.css" />
+    </h:head>
+    
+    <h:body>
+    <h1>Dados de Aluno</h1>
+    <hr style="color:#33cc00" width="100%" align="left" noshade="noshade"></hr>
+    	
+    	
+<!-- ...... Formulário para preenchimento com Dados Pessoais do Aluno ..................................... -->
+    		
+    	<h:form>
+    		<p:panelGrid styleClass="semBorda" >
+    			<p:row>
+    				<p:column colspan="4"><br/>
+    					<br/><h:outputText value="Dados Pessoais"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column>
+       					<p:outputLabel value="Código: #{controleAluno.aluno.codigo}"/>
+       					<p:inputText type="hidden" value="#{controleAluno.aluno.codigo}"/>
+       				</p:column>
+       				<p:column colspan="2"/>
+       					<p:column>
+       				    	<p:outputLabel value="Cadastrado em: #{controleAluno.aluno.dataCadastro}"/>
+       						<p:inputText type="hidden" value="#{controleAluno.aluno.dataCadastro}"/>
+       				    </p:column>
+       			</p:row>
+       			<p:row>
+            		<p:column><h:outputLabel value="Nome: " /></p:column>
+            		<p:column colspan="3"><p:outputLabel value="#{controleAluno.aluno.nome}"/></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputText value="Sexo: " /></p:column>  
+        			<p:column><p:outputLabel value="#{controleAluno.aluno.sexo}" /></p:column>
+        			
+        			<p:column><h:outputText value="Nascimento: " /></p:column>
+        			<p:column><p:outputLabel value="#{controleAluno.aluno.dataNasc}"/></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel value="RG: "/></p:column>
+            		<p:column><p:outputLabel value="#{controleAluno.aluno.numRg}"/></p:column>
+            	
+            		<p:column><h:outputLabel value="Orgão Expedidor: "/></p:column>
+            		<p:column><p:outputLabel value="#{controleAluno.aluno.orgaoExpeditor}"/></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel value="CPF: "/></p:column>
+            		<p:column><p:outputLabel value="#{controleAluno.aluno.numCpf}"/></p:column>
+				</p:row>
+				<p:row>
+					<p:column><h:outputLabel value="Fone Fixo: "/></p:column>
+					<p:column><p:outputLabel value="#{controleAluno.aluno.telefoneFixo}"/></p:column>
+					
+					<p:column><h:outputLabel value="Celular: "/></p:column>
+					<p:column><p:outputLabel value="#{controleAluno.aluno.telefoneCelular}"/></p:column>
+				</p:row>
+				<p:row>
+            		<p:column><h:outputLabel value="Email: " /></p:column>
+            		<p:column colspan="3"><p:outputLabel value="#{controleAluno.aluno.email}"/></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel value="Profissão: " /></p:column>
+            		<p:column colspan="3"><p:outputLabel value="#{controleAluno.aluno.profissao}"/></p:column>
+            	</p:row>
+            	
+            	
+<!-- .................. Formulário para preenchimento com informações do Endereço do Aluno ....................... -->
+            	
+                <p:row><br/>
+                	<p:column colspan="4"><br/>
+                		<h:outputText value="Endereço"/>
+        				<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+        			</p:column>
+        		</p:row>
+        		<p:row>
+            		<p:column><h:outputLabel value="Logradouro: " /></p:column>
+            		<p:column colspan="2"><p:outputLabel value="#{controleAluno.aluno.endereco.logradouro}"/></p:column>
+            		<p:column>
+            			<h:outputLabel value="Nº: "/>
+            			<p:outputLabel value="#{controleAluno.aluno.endereco.numero}"/>
+            		</p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel value="Bairro: "/></p:column>
+            		<p:column><p:outputLabel value="#{controleAluno.aluno.endereco.bairro}"/></p:column>
+            		
+            		<p:column><h:outputLabel value="CEP: "/></p:column>
+            		<p:column><p:outputLabel value="#{controleAluno.aluno.endereco.cep}"/></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel value="Estado: " /></p:column>
+            		<p:column><p:outputLabel value="#{controleAluno.aluno.endereco.estado.estado}"/></p:column>
+            		
+            		<p:column><h:outputLabel value="Cidade: " /></p:column>
+            		<p:column><p:outputLabel value="#{controleAluno.aluno.endereco.cidade}"/></p:column>
+            	</p:row>
+            	
+            	
+<!-- .................. Formulário para preenchimento com informações Complementares do Aluno ................. -->
+
+        		<p:row>
+        			<p:column colspan="4"><br/>
+        				<h:outputText value="Dados Complementares"/>
+        				<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+        			</p:column>
+        		</p:row> 
+        		<p:row>
+        			<p:column><h:outputText value="Perfil Candidato: "/></p:column>
+        			<p:column colspan="3"><p:outputLabel value="#{controleAluno.aluno.perfilCandidato.perfilCandidato}"/></p:column>
+        		</p:row>
+        		<p:row>
+        			<p:column><h:outputText value="Escolaridade: "/></p:column>
+        			<p:column colspan="3"><p:outputLabel value="#{controleAluno.aluno.escolaridade.escolaridade}"/></p:column>
+        		</p:row>
+        		<p:row>
+        			<p:column colspan="4"><br/><h:outputText value="Como se informou sobre o curso?"/></p:column>
+        		</p:row>
+        		<p:row>
+        			<p:column colspan="4"><p:inputTextarea value="#{controleAluno.aluno.foiInformado}" readonly="true" cols="90"/><br/></p:column>
+        		</p:row>
+        		<p:row><p:column colspan="3"/>
+        			<p:column><br/> <!-- 
+        				<p:commandButton id="editar" value="Editar" ajax="false"
+        								 action="EdicaoAluno"/>  -->
+       					<p:commandButton id="voltar" value="Voltar" ajax="false"
+       									 action="/ListarAlunos.xhtml?faces-redirect=true" immediate="true" />
+       				</p:column>
+        		</p:row>
+        	</p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+        <title>.:: DIEX - Cadastro de Aluno ::.</title>
+        <link rel="stylesheet" href="SemBorda.css" />
+    </h:head>
+    
+    <h:body>
+    <h1>Cadastro de Aluno</h1>
+    <hr style="color:#33cc00" width="100%" align="left" noshade="noshade"></hr>
+    	<h:outputText value="Os campos com (*) são de preenchimento obrigatório"/>
+    	
+    	<h:form id="formularioCadastroAluno" method="post">
+    	
+    	
+<!-- ...... Formulário para preenchimento com Dados Pessoais do Aluno ..................................... -->
+    		
+    		<p:panelGrid styleClass="semBorda">
+    			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Dados Pessoais"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+            		<p:column><h:outputLabel value="Nome*: " /></p:column>
+            		<p:column colspan="3">
+            			<p:inputText id="nome" required="true" requiredMessage="*insira um nome" label="Nome"
+            						 value="#{controleAluno.selecionado.nome}" size="70"/>
+            		</p:column>
+            	</p:row>
+            	<p:row>
+            	<p:column><h:outputText value="Sexo*: " /></p:column>  
+        		<p:column>
+        			<p:selectOneMenu value="#{controleAluno.selecionado.sexo}" required="true" requiredMessage="*Selecione o sexo">
+            			<f:selectItem itemLabel="Selecione..." itemValue="" />  
+            			<f:selectItem itemLabel="Masculino" itemValue="masculino" />
+            			<f:selectItem itemLabel="Feminino"  itemValue="feminino"  />
+        			</p:selectOneMenu>
+        		</p:column>
+        		<p:column><h:outputText value="Nascimento*: " /></p:column>
+        		<p:column><p:calendar navigator="true" required="true" requiredMessage="*Insira a data de nascimento"
+        							  pattern="dd/mm/yyyy" id="nascimento" effect="slideDown"
+        							  value="#{controleAluno.selecionado.dataNasc}"/></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel value="RG*: "/></p:column>
+            		<p:column><p:inputMask id="rg" value="#{controleAluno.selecionado.numRg}"
+            							   required="true" requiredMessage="*Insira o seu RG"
+            							   mask="9.999.999" label="RG"/></p:column>
+            		<p:column><h:outputLabel value="CPF*: "/></p:column>
+            		<p:column><p:inputMask id="cpf" value="#{controleAluno.selecionado.numCpf}"
+            							   required="true" requiredMessage="*Insira o seu CPF"
+            							   mask="999.999.999-99" label="CPF"/></p:column>
+				</p:row>
+				<p:row>
+					<p:column><h:outputLabel value="Fone Fixo: "/></p:column>
+					<p:column><p:inputMask value="#{controleAluno.selecionado.telefoneFixo}"
+									 	   id="foneFixo" mask="(99)9999-9999"/>
+					</p:column>
+					<p:column>
+						<h:outputLabel value="Celular: "/>
+					</p:column>
+					<p:column>
+				    	<p:inputMask id="foneCelular" value="#{controleAluno.selecionado.telefoneCelular}"
+				    				 mask="(99)9999-9999"/>
+					</p:column>
+				</p:row>
+				<p:row>
+            		<p:column><h:outputLabel for="email" value="Email: " /></p:column>
+            		<p:column colspan="3"><p:inputText  id="email" value="#{controleAluno.selecionado.email}"
+            											size="70" label="Email" /></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel for="profissao" value="Profissão: " /></p:column>
+            		<p:column colspan="3"><p:inputText  id="profissao" value="#{controleAluno.selecionado.profissao}"
+            											size="70" label="Profissao" /></p:column>
+            	</p:row>
+                <p:row><br/>
+                	<p:column colspan="4">
+                	
+         
+<!-- .................. Formulário para preenchimento com informações do Endereço do Aluno ....................... -->
+        				
+        				<h:outputText value="Endereço"/>
+        				<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+        			</p:column>
+        		</p:row>
+        		<p:row>
+            		<p:column><h:outputLabel value="Logradouro*: " /></p:column>
+            		<p:column colspan="3"><p:inputText  id="logradouro" label="Logradouro" size="70"
+            											required="true" requiredMessage="*Insira um logradouro"
+            											value="#{controleAluno.selecionado.endereco.logradouro}"/></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel for="bairro" value="Bairro: "/></p:column>
+            		<p:column><p:inputText id="bairro" value="#{controleAluno.selecionado.endereco.bairro}" label="Bairro"/></p:column>
+            		<p:column><h:outputLabel for="cep" value="CEP: "/></p:column>
+            		<p:column><p:inputMask id="cep" value="#{controleAluno.selecionado.endereco.cep}"
+            							   mask="99999-999" label="CEP"/></p:column>
+            	</p:row>
+            	<p:row>
+            		<p:column><h:outputLabel value="Estado*: " /></p:column>
+            		<p:column>
+            			<p:selectOneMenu value="#{controleAluno.selecionado.endereco.estado.estado}"
+            							 id="estado" required="true" requiredMessage="*Selecione um estado">
+            				<f:selectItem itemLabel="Selecione..." itemValue=""/>
+            				<f:selectItems var="estados"
+            							   itemLabel="#{controleAluno.selecionado.endereco.estado.estado}"
+            							   itemValue="#{controleAluno.selecionado.endereco.estado.estado}"/>
+            			</p:selectOneMenu>
+            		</p:column>
+            		<p:column><h:outputLabel value="Cidade*: " /></p:column>
+            		<p:column><p:inputText id="cidade" value="#{controleAluno.selecionado.endereco.cidade}"
+            							   required="true" requiredMessage="*Insira uma cidade"/></p:column>
+            	</p:row>
+        		<p:row>
+        			<p:column colspan="4">
+        
+        
+<!-- .................. Formulário para preenchimento com informações Complementares do Aluno ................. -->
+        				
+        				<h:outputText value="Dados Complementares"/>
+        				<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+        			</p:column>
+        		</p:row>
+        		<p:row>
+        			<p:column><h:outputText value="Perfil Candidato*: "/></p:column>
+        			<p:column>
+        				<p:selectOneMenu id="perfilCandidato" required="true" requiredMessage="*Selecione um perfil"
+        							     value="#{controleAluno.selecionado.perfilCandidato.perfilCandidato}">
+        					<f:selectItem itemLabel="Selecione..." itemValue=""/>
+        					<f:selectItems var="perfis"
+        								   itemLabel="#{controleAluno.selecionado.perfilCandidato.perfilCandidato}"
+        								   itemValue="#{controleAluno.selecionado.perfilCandidato.perfilCandidato}"/>
+        				</p:selectOneMenu>
+        			</p:column>
+        		</p:row>
+        		<p:row>
+        			<p:column><h:outputText value="Escolaridade*: "/></p:column>
+        			<p:column>
+        				<p:selectOneMenu id="escolaridade" required="true" requiredMessage="*Selecione a escolaridade"
+        							     value="#{controleAluno.selecionado.escolaridade.escolaridade}">
+        					<f:selectItem itemLabel="Selecione..." itemValue=""/>
+        					<f:selectItems var="escolaridades"
+        								   itemLabel="#{controleAluno.selecionado.escolaridade.escolaridade}"
+        						   		   itemValue="#{controleAluno.selecionado.escolaridade.escolaridade}"/>
+        				</p:selectOneMenu>
+        			</p:column>
+        		</p:row>
+        		<p:row>
+        			<p:column><h:outputText value="Precedência Escolar*: "/></p:column>
+        			<p:column>
+        				<p:selectOneRadio id="precedenciaEscolar" required="true" requiredMessage="*Selecione sua Precedência"
+        								  value="#{controleAluno.selecionado.precedenciaEscolar}">
+        					<f:selectItem itemLabel="IFPE" itemValue="IFPE"/>
+        					<f:selectItem itemLabel="Outro" itemValue="outro"/>
+        				</p:selectOneRadio>
+        			</p:column>
+        		</p:row>
+        	
+        		<p:row>
+        			<p:column colspan="3"><br/><h:outputText value="Como se informou sobre o curso?"/></p:column>
+        		</p:row>
+        		<p:row>
+        			<p:column colspan="3">
+        				<p:inputTextarea id="observacoes" cols="70" rows="3"
+        							     value="#{controleAluno.selecionado.observacoes}"/><br/>
+        			</p:column>
+        		</p:row>
+        		<p:row><p:column colspan="3"/>
+        			<p:column><br/>
+        				<p:commandButton id="finalizar" value="Finalizar" actionListener="#{controleAluno.adicionar}"/>
+       					<p:commandButton type="reset" id="cancelar" value="Cancelar" action="index.xhtml" />
+       				</p:column>
+        		</p:row>
+        	</p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

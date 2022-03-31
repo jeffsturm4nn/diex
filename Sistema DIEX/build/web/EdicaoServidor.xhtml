@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>.:: DIEX - Atualizar Servidor ::.</title>
+		<link rel="stylesheet" href="SemBorda.css" />
+    </h:head>
+    
+    <h:body>
+    <h1>Atualizar Servidor</h1>
+    <hr style="color:#33cc00" width="100%" align="left" noshade="noshade"/>
+    	<h:outputLabel value="Os campos com (*) são de preenchimento obrigatório"/>
+
+		<h:form>    	
+    	
+<!-- ...... Dados de usuário, para o servidor logar no site ............................................. -->
+
+    		<p:panelGrid styleClass="semBorda"> <!-- CSS para esconder bordas do PanelGrid-->
+    			<p:row>
+    				<p:column colspan="4"><br/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+    			</p:row>
+    			<p:row>
+       				<p:column>
+       					<p:outputLabel value="Código: #{controleServidor.servidor.codigo}"/>
+       					<p:inputText type="hidden" value="#{controleServidor.servidor.codigo}"/>
+       				</p:column>
+       				<p:column colspan="2"/>
+       					<p:column>
+       				    	<p:outputLabel value="Cadastrado em: #{controleServidor.servidor.dataCadastro}"/>
+       						<p:inputText type="hidden" value="#{controleServidor.servidor.dataCadastro}"/>
+       				    </p:column>
+       			</p:row>
+    			<p:row>
+    				<p:column><h:outputText value="Tipo Servidor*: "/></p:column>
+    				<p:column>
+    					<p:selectOneMenu id="tipoServidor" style="width:210px" converter="#{simpleEntityConverter}"
+    									 value="#{controleServidor.servidor.tipoServidor}"
+    									 required="true" requiredMessage="*Selecione um Tipo de Servidor">
+    						<f:selectItem itemLabel="Selecione..."  itemValue=""/>
+    						<f:selectItems  value="#{controleTipoServidor.listar()}"
+    										var="tipo"
+    										itemLabel="#{tipo.tipoServidor}"
+    										itemValue="#{tipo}"/>
+    					</p:selectOneMenu>
+    					<p:message for="tipoServidor"/>
+    				</p:column>
+    			</p:row>
+    			<p:row>
+    				<p:column><h:outputText value="SIAPE: "/></p:column>
+    				<p:column><h:outputText value="#{controleServidor.servidor.usuario.siape}"/>
+    						
+    						  <!--
+									Siape e Senha escondidos. Não podem ser alterados nessa View
+								-->
+    						  <p:inputText  type="hidden" id="siape" label="Siape" size="22"
+    										value="#{controleServidor.servidor.usuario.siape}"
+    										required="true"/>
+    						  <p:inputText  type="hidden" id="senha" label="Senha" size="22"
+    										value="#{controleServidor.servidor.usuario.senha}"
+    										required="true"/>
+    				</p:column>
+    			</p:row>
+    		
+    		
+<!-- .......... Formulário para preenchimento com Dados Pessoais do Servidor ............................. -->
+	    		
+	    		<p:row>
+	    			<p:column colspan="4">
+	       				<br/><h:outputText value="Dados Pessoais" />
+	       				<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+	       			</p:column>
+	       		</p:row>
+	       		<p:row>
+	            	<p:column><h:outputLabel for="nome" value="Nome*: " /></p:column>
+	            	<p:column colspan="3"><p:inputText  id="nome" label="Nome" size="62"
+	            										value="#{controleServidor.servidor.nome}"
+	            										required="true" requiredMessage="*Insira um Nome"/>
+	            						  <p:message for="nome"/>
+	            	</p:column>
+	            </p:row>
+				<p:row>
+	            	<p:column><h:outputLabel value="Email: " /></p:column>
+	            	<p:column colspan="3"><p:inputText  id="email" value="#{controleServidor.servidor.email}"
+	            										size="62" label="Email" /></p:column>
+	            </p:row>
+				<p:row>
+					<p:column><h:outputLabel value="Fone: "/></p:column>
+					<p:column colspan="3">
+						  <p:inputMask id="fone" value="#{controleServidor.servidor.telefone}"
+						  			   mask="(99)9999-9999" size="22"/></p:column>
+				</p:row>
+	       		<p:row>
+	       			<p:column colspan="4">
+	       			
+	       			
+<!-- .............. Informações de Trabalho ................................................................. -->
+       				
+       				<br/><hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Coordenação*: "/> </p:column>
+       				<p:column>
+       					<p:selectOneMenu id="coordenacao" style="width:450px"
+       									 value="#{controleServidor.servidor.coordenacao}"
+       									 converter="#{simpleEntityConverter}"
+       									 required="true" requiredMessage="Selecione a Coordenação">
+       						<f:selectItem itemLabel="Selecione..." itemValue=""/>
+            				<f:selectItems value="#{controleCoordenacao.listar()}"
+            							   var="coordenacao"
+            							   itemLabel="#{coordenacao.coordenacao}"
+            							   itemValue="#{coordenacao}"/>
+       					</p:selectOneMenu><p:message for="coordenacao"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Unidade de Ensino*: "/></p:column>
+    				<p:column><p:inputText  id="unidadeDeEnsino" value="#{controleServidor.servidor.unidadeEnsino}"
+    										required="true" label="UnidadeDeEnsino" size="53"
+    										requiredMessage="*Insira a unidade de ensino"/>
+    						  <p:message for="unidadeDeEnsino"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="3"/>
+       				<p:column><br/>
+       					<p:commandButton id="atualizar" value="Atualizar" ajax="false"
+       									 action="#{controleServidor.alterar()}"/>
+       					<p:commandButton id="cancelar" value="Cancelar" ajax="false"
+       									 action="/ListarServidores.xhtml?faces-redirect=true" immediate="true" />
+       				</p:column>
+       			</p:row>
+			</p:panelGrid>
+		</h:form>
+    </h:body>
+</html>

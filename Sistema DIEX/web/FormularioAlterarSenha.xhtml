@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Alterar Senha - Sistema DIEX</title>
+		<link rel="stylesheet" href="SemBorda.css" />
+	</h:head>
+	<h:body>
+		<h1>Alterar Senha</h1>
+		<hr style="color:#33cc00" width="100%" align="left" noshade="noshade"/>
+		<h:form><br/>
+	    
+	    	<!-- Formulário para Alterar Senha do Servidor -->
+	    	<hr style="color:#33cc00; size:0" width="45%" align="left" noshade="noshade"/>
+	    	<p:panelGrid styleClass="semBorda">
+	    		<p:row>
+	    			<p:column> <h:outputText value="Senha Atual: "/> </p:column>
+	    			<p:column> <p:password id="senhaAtual" size="22" label="Senha" 
+	    								   value="#{controleServidor.servidor.usuario.senha}"
+	    								   required="true" requiredMessage="*Insira a senha"/> </p:column>
+	    		</p:row>
+	    		<p:row><p:column>
+	    			<p:message />
+	    		</p:column></p:row>
+	    		<p:row>
+    				<p:column><h:outputLabel value="Nova Senha: " /></p:column>
+					<p:column><p:password id="senhaNovaComp" value="#{controleUsuario.usuario.senha}" match="senhaNova" size="22"
+										  label="Senha" required="true" feedback="true" promptLabel="Insira uma nova senha"
+										  weakLabel="Fraca" goodLabel="Regular" strongLabel="Forte"
+										  requiredMessage="*Insira uma senha"/></p:column>
+				</p:row>
+				<p:row>
+					<p:column><h:outputLabel value="Nova Senha Novamente: " /></p:column>
+					<p:column><p:password id="senhaNova" value="#{controleUsuario.usuario.senha}"
+										  label="Senha" required="true" size="22"
+										  requiredMessage="*Insira a senha novamente"/></p:column>
+				</p:row>
+	    	</p:panelGrid>
+	    	<hr style="color:#33cc00; size:0" width="45%" align="left" noshade="noshade"/>
+	    </h:form>
+	</h:body>
+</html>

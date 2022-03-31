@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" lang="pt-BR" />
+	    <title>.:: DIEX - Dados de Curso ::.</title>
+	    <link rel="stylesheet" href="SemBorda.css" />
+	</h:head>
+	<h:body>
+		<h1>Dados de Curso</h1>
+		<hr style="color:#33cc00" width="100%" align="left" noshade="noshade"></hr>
+    	<br/>
+    	
+    	<h:form id="formularioDadosCurso">
+    	
+    	
+<!-- ...... Formulário para preenchimento com Dados do Curso ..................................... -->
+    		
+    		<p:panelGrid ><!-- styleClass="semBorda" -->
+    			<p:row>
+       				<p:column colspan="4">
+       					<p:dataTable id="solicitacoes_visualizacao" value="#{controleCurso.curso.solicitacaoEdicao}"
+       								 var="solicitacao" emptyMessage="">
+							
+				        	<p:column>  
+				            	<f:facet name="header" id="dataHeader">  
+				                	<h:outputText value="Solicitações" />  
+				            	</f:facet>  
+				            	<p:inputTextarea id="solicitacao" value="#{solicitacao.nomeSolicitacao}"
+				            					 cols="82" rows="10" />  
+				        	</p:column>				 
+       					</p:dataTable>
+       				</p:column>
+       			</p:row>
+    			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Identificação Ação de Extensão"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Título: " /></p:column>
+       				<p:column colspan="3"><p:outputLabel id="titulo" value="#{controleCurso.curso.titulo}"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Proponente: " /></p:column>
+       				<p:column colspan="3"><p:outputLabel id="proponent" value="#{controleCurso.curso.proponente.nome}"/></p:column>
+       			</p:row>
+       			<p:row>
+	    			<p:column colspan="4">
+	    				<br/><hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+	    			</p:column>
+	       		</p:row>
+	       		<p:row>
+		       		<p:column colspan="4">
+		       			<p:panelGrid>
+			       			<p:row>
+			       				<p:column><h:outputText value="Área de Conhecimento: "/></p:column>
+			       				<p:column><p:outputLabel id="areaConhecimento" value="#{controleCurso.curso.areaConhecimento.areaConhecimento}"/></p:column>
+			       			</p:row>
+			       			<p:row>
+			       				<p:column><h:outputText value="Área Temática: "/></p:column>
+			       				<p:column><p:outputLabel id="areaTematica" value="#{controleCurso.curso.areaTematica.areaTematica}"/></p:column>
+			       			</p:row>
+			       			<p:row>
+			       				<p:column><h:outputText value="Linha de Extensão: "/></p:column>
+			       				<p:column><p:outputLabel id="linhaExtensao" value="#{controleCurso.curso.linhaExtensao.linhaExtensao}"/></p:column>
+			       			</p:row>
+		       			</p:panelGrid>
+	       			</p:column>
+       			</p:row>
+       			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Equipe"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row> 
+       			<p:row>
+       				<p:column><h:outputText value="Servidores: "/></p:column>
+       				<p:column colspan="3"><p:dataList value="#{controleCurso.curso.servidores}"
+       												  var="servidor" itemType="disc">#{servidor.nome}</p:dataList></p:column>
+       			</p:row>
+       			<p:row> 
+       				<p:column><h:outputText value="Discentes: "/></p:column>
+       				<p:column colspan="3"><p:dataList value="#{controleCurso.curso.equipeMonitores}"
+       												  var="monitor" itemType="disc">#{monitor}</p:dataList></p:column>
+       			</p:row>
+       			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Caracterização da Proposta"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Público Alvo: "/></p:column>
+       				<p:column colspan="3">
+       					<p:inputTextarea id="publicoAlvo" cols="60" rows="3" readonly="true"
+       									 value="#{controleCurso.curso.publicoAlvo}"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column rowspan="2"><h:outputText value="Local Realização: " /></p:column>
+       				<p:column colspan="3"><p:outputLabel id="localRealizacao" value="#{controleCurso.curso.localRealizacao.localRealizacao}"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="3"><p:outputLabel id="localExterno" value="#{controleCurso.curso.localExterno}"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4">
+       					<p:panelGrid>
+       						<p:row>
+       							<p:column><h:outputText value="Nº vagas: "/></p:column>
+       							<p:column><p:outputLabel id="numeroVagas" value="#{controleCurso.curso.numVagas}"/></p:column>
+       							
+       							<p:column><h:outputText value="Carga horária total: "/></p:column>
+       							<p:column><p:outputLabel id="cargaHorariaTotal" value="#{controleCurso.curso.cargaHorariaTotal}"/></p:column>
+       							
+       							<p:column><h:outputText value="Carga horária semanal: "/></p:column>
+       							<p:column><p:outputLabel id="cargaHorariaSemanal" value="#{controleCurso.curso.cargaHorariaSemanal}"/></p:column>
+       						</p:row>
+       					</p:panelGrid>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Data Início: "/></p:column>
+       				<p:column><p:outputLabel id="dataInicio" value="#{controleCurso.curso.dataIni}"/></p:column>
+        							  
+       				<p:column><h:outputText value="Data Término: "/></p:column>
+       				<p:column><p:outputLabel id="dataTermino" value="#{controleCurso.curso.dataFim}"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Hora de início: "/></p:column>
+       				<p:column><p:outputLabel id="horaInicio" value="#{controleCurso.curso.horaIni}"/></p:column>
+       				
+       				<p:column><h:outputText value="Hora de término: "/></p:column>
+       				<p:column><p:outputLabel id="horaFim" value="#{controleCurso.curso.horaFim}"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column><h:outputText value="Dias: "/></p:column>
+       				<p:column colspan="3"><p:outputLabel id="dias" value="#{controleCurso.curso.dias}"/></p:column>
+       			</p:row>
+       			<p:row>
+    				<p:column colspan="4">
+    					<br/><hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Requisitos de Acesso: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="requisitosAcesso" cols="82" rows="3" readonly="true"
+       										   value="#{controleCurso.curso.requisitosAcesso}"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Justificativa: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="justificativa" cols="82" rows="3" readonly="true"
+       										   value="#{controleCurso.curso.justificativa}"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Objetivos Gerais: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="objetivosGerais" cols="82" rows="3" readonly="true"
+       										   value="#{controleCurso.curso.objetivosGerais}"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Objetivos Específicos: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="objetivosEspecificos" cols="82" rows="3" readonly="true"
+       										   value="#{controleCurso.curso.objetivosEspecificos}"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Metodologia: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="metodologia" cols="82" rows="3" readonly="true"
+       										   value="#{controleCurso.curso.metodologia}"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Metas: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="metas" cols="82" rows="3" readonly="true"
+       										   value="#{controleCurso.curso.metas}"/></p:column>
+       			</p:row>
+       			<p:row><p:column colspan="4"><h:outputText value="Referências: "/></p:column></p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="referencias" cols="82" rows="3" readonly="true"
+       										   value="#{controleCurso.curso.referencias}"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4">
+       					<br/><h:outputText value="Conteúdo Programático: "/>
+       					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4">
+						<p:dataTable id="conteudoProgramatico" value="#{controleCurso.curso.conteudoProgramatico}"
+									 var="conteudoProgramatico" rowKey="conteudoProgramatico.dataProgramada"
+									 emptyMessage="Não foram cadastrados Conteúdos">
+							
+				        	<p:column>  
+				            	<f:facet name="header" id="dataHeader">  
+				                	<h:outputText value="Data" id="data"/>  
+				            	</f:facet>  
+				            	<h:outputText id="dataProgramada" value="#{conteudoProgramatico.dataProgramada}" />  
+				        	</p:column>  
+				
+				        	<p:column>  
+				            	<f:facet name="header">  
+				                	<h:outputText value="Conteúdo" />  
+				            	</f:facet>  
+				            	<h:outputText value="#{conteudoProgramatico.conteudo}" />  
+				        	</p:column>  
+		    			</p:dataTable>
+       				</p:column>
+       			</p:row>
+       			<p:row>
+    				<p:column colspan="4">
+    					<br/><h:outputText value="Avaliação de Resultados"/>
+    					<hr style="color:#33cc00; size:0" width="100%" align="left" noshade="noshade"/>
+    				</p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4"><p:inputTextarea id="avaliacaoResultados" cols="82" rows="3" readonly="true"
+       										   value="#{controleCurso.curso.avaliacaoResultados}"/></p:column>
+       			</p:row>
+       			<p:row>
+       				<p:column colspan="4">
+       					<p:inputTextarea id="solicitacoes_pedido" value="#{controleCurso.solicitacao.nomeSolicitacao}" cols="82" rows="10"
+       									 rendered="#{controleCurso.correcao}" /> 
+       				</p:column>
+       			</p:row>
+       			<p:row><br/>
+       				<p:column colspan="3" />
+        			<p:column><br/>
+        				<p:commandButton id="editar" value="Editar" ajax="false"
+        								 action="/EdicaoCurso.xhtml?faces-redirect=true" />
+       					<p:commandButton id="voltar" value="Voltar" ajax="false"
+       									 action="/index.xhtml?faces-redirect=true" immediate="true" />
+       				</p:column>
+        		</p:row>
+    		</p:panelGrid>
+    	</h:form>
+	</h:body>
+</html>
